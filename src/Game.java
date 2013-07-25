@@ -2,14 +2,13 @@
 import java.util.Scanner;
 
 public class Game {
-  private int x;
+	private int x;
 	private int y;
 	
 	public void inputCoordinates(Gamer g, Board b) {
 		System.out.println(g.getName() + ", enter the coordinates of the cell:");
 		Scanner sc = new Scanner(System.in);
 		while(true) {
-    //Вот небольшая проблема с исключениями, пока не очень хватает знаний:)
 //			try {		
 				x = sc.nextInt ();
 				y = sc.nextInt ();
@@ -76,5 +75,16 @@ public class Game {
 				return true;	
 		} else
 			return false;
+	}
+	
+	public boolean validationWinOrDraw(Board b, Gamer gamer, char orOX) {
+		if(validationWin(b, orOX) == "three") {
+			System.out.println("Win " + gamer.getName() + "!");
+			return true;
+		} else if(validationWin(b, orOX) == "draw") {
+			System.out.println("Draw!");
+			return true;
+	    }
+		return false;
 	}
 }
