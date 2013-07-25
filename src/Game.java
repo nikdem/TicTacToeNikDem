@@ -9,6 +9,7 @@ public class Game {
 		System.out.println(g.getName() + ", enter the coordinates of the cell:");
 		Scanner sc = new Scanner(System.in);
 		while(true) {
+			//покане решил проблему с исключениями
 //			try {		
 				x = sc.nextInt ();
 				y = sc.nextInt ();
