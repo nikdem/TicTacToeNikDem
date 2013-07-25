@@ -1,4 +1,6 @@
 public class Board {
+  
+  // Я конечно понимаю, что так проще ))) но стоит подумать о возможности расширения доски в будущем. При таком однотипном массиве выглядит индусятски, как на мой взгляд.
   private char[][] cell = {			
 			{'#', '#', '#'},
 			{'#', '#', '#'},
@@ -22,6 +24,7 @@ public class Board {
 		for(int i=0; i < cell.length; i++) {
 			for(int j=0; j <cell.length; j++)
 				System.out.print(cell[i][j] + " ");
+		        } // Скобка потерялась
 			System.out.println();
 		}
 		System.out.println();
