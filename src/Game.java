@@ -6,9 +6,15 @@ public class Game {
 	private int y;
 	
 	public void inputCoordinates(Gamer g, Board b) {
+		//Почему нельзя сразу написать какие координаты вводить?
+		//Логичнее для обычного человека начинать с 1
+		//Для обычного же человека не понятно х-вую или у-вую координату вводить перовой
+		//ссори за матюки
 		System.out.println(g.getName() + ", enter the coordinates of the cell:");
 		Scanner sc = new Scanner(System.in);
 		while(true) {
+			// аа, я понял, почему выдает ошибки в игре))
+			// a зачем исключения? )) я пока не изучал этот вопрос, но обошелся без них.
 			//покане решил проблему с исключениями
 //			try {		
 				x = sc.nextInt ();
@@ -34,6 +40,8 @@ public class Game {
 		}
 	}
 	
+	// Я еще у себя с этим не разобрался, но отдает индусятиной.
+	// Просто впечатление такое. Сам этим болею.
 	public String validationWin(Board b, char orOX) {
 		int count2 = 0;
 		for(int i=0; i < b.getCellLength(); i++) {
@@ -85,7 +93,7 @@ public class Game {
 		} else if(validationWin(b, orOX) == "draw") {
 			System.out.println("Draw!");
 			return true;
-	    }
+	        }
 		return false;
 	}
 }
