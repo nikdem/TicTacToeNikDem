@@ -23,7 +23,7 @@ public class Main {
 			if(game.validationWin(board, 'x') == "three") {
 				System.out.println("Win " + gamerX.getName() + "!");
 				break;
-		    } else	if(game.validationWin(board, 'x') == "draw") {
+		        } else	if(game.validationWin(board, 'x') == "draw") {
 				System.out.println("Draw!");
 				break;
 			}	
