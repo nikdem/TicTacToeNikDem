@@ -4,16 +4,7 @@ public class Board {
     private int sizeBoard;
     private char[][] cell;
 
-    Board() {
-        System.out.print("Выберите размерность доски для игры: ");
-        Scanner sc = new Scanner(System.in);
-        sizeBoard = sc.nextInt();
-        cell = new char[sizeBoard][sizeBoard];
-        for(int i = 0; i < cell.length; i++)
-            for(int j = 0; j < cell.length; j++)
-                cell[i][j] = '#';
-    }
-	public void setCell(int x, int y, char orOX) {
+    public void setCell(int x, int y, char orOX) {
 		cell[x][y] = orOX;
 	}
 	
