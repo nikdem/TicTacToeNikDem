@@ -8,7 +8,7 @@ public class Board {
         cell = new char[sizeBoard][sizeBoard];
         for(int i = 0; i < cell.length; i++)
             for(int j = 0; j < cell.length; j++)
-                 cell[i][j] = '#';
+                cell[i][j] = '#';
     }
 
     public void setCell(int x, int y, char orOX) {
