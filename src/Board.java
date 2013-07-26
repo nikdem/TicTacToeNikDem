@@ -1,8 +1,15 @@
 import java.util.Scanner;
 
 public class Board {
-    private int sizeBoard;
+    private int sizeBoard = 3;
     private char[][] cell;
+
+    Board() {
+        cell = new char[sizeBoard][sizeBoard];
+        for(int i = 0; i < cell.length; i++)
+            for(int j = 0; j < cell.length; j++)
+                 cell[i][j] = '#';
+    }
 
     public void setCell(int x, int y, char orOX) {
 		cell[x][y] = orOX;
