@@ -9,10 +9,21 @@ public class Game {
 		System.out.println(g.getNamePlayer() + ", введите координаты клетки:");
 		Scanner sc = new Scanner(System.in);
 		while(true) {
+            boolean wrongInput = false;
+            try {
             System.out.print("  Строка(1-" + b.getCellLength() + "):  ");
-			x = sc.nextInt() - 1;
+            x = sc.nextInt() - 1;
             System.out.print("  Столбец(1-" + b.getCellLength() + "):  ");
 			y = sc.nextInt() - 1;
+            } catch (Exception e) {
+                System.out.println("Вводите только цифры!");
+                wrongInput = true;
+                // насколько я понимаю, это метод пропускает
+                // введенные данные по шаблону, в данном случае - ".*"(пропускает всё)
+                sc.skip(".*");
+            }
+
+            if(wrongInput) continue;
 
 			if (validationCell(x, y, b)) {
 				if(g.getOrOX() == 'O') {
@@ -64,7 +75,7 @@ public class Game {
 			for(int j=0; j < b.getCellLength(); j++)
 			if(b.getCell(i, j) == '#') 
 				 count2++;
-		if(count2 == 0) {
+		    if(count2 == 0) {
 				System.out.println("Ничья!");
                 return true;
 		}
