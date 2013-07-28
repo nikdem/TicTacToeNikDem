@@ -8,8 +8,6 @@ public class Main {
             System.err.println("Unsupported encoding set for console: ");
         }
 
-        System.out.println(System.getProperty("console.encoding"));
-        System.out.println(System.getProperty("file.encoding"));
 		System.out.println("Привет! Это игра \"Крестики-Нолики\"");
 
         Gamer gamerX = new Gamer('X');
