@@ -17,18 +17,12 @@ public class Main {
 		board.showBoard();
 		
 		Game game = new Game();
-		for(int i = 1; ; i++) {
-			game.inputCoordinates(gamerX, board);
-			board.showBoard();
-            if(i >= board.getCellLength())
-                if(game.validationWinOrDraw(board, gamerX, 'x'))
-                    break;
-			
-			game.inputCoordinates(gamerO, board);
-			board.showBoard();
-            if(i >= board.getCellLength())
-                if(game.validationWinOrDraw(board, gamerO, 'o'))
-                    break;
-	    }
+		for(int countStep = 1; ; countStep++) {
+            game.stepPlayer(gamerX, board, 'x', countStep);
+            if(game.getQuit()) break;
+
+            game.stepPlayer(gamerO, board, 'o', countStep);
+            if(game.getQuit()) break;
+		}
 	}
 }

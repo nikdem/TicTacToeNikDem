@@ -4,6 +4,11 @@ import java.util.Scanner;
 public class Game {
 	private int x;
 	private int y;
+    private boolean quit = false;
+
+    public boolean getQuit() {
+        return quit;
+    }
 	
 	public void inputCoordinates(Gamer g, Board b) {
 		System.out.println(g.getNamePlayer() + ", введите координаты клетки:");
@@ -92,4 +97,12 @@ public class Game {
 		} else
 			return false;
 	}
+
+    public void stepPlayer(Gamer g, Board b, char orOX, int countStep) {
+        inputCoordinates(g, b);
+        b.showBoard();
+        if(countStep >= b.getCellLength())
+            if(validationWinOrDraw(b, g, orOX))
+                quit = true;
+    }
 }
