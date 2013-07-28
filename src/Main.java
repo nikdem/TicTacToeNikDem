@@ -5,7 +5,7 @@ public class Main {
         try {
             System.setOut(new PrintStream(System.out, true, "UTF-8"));
         } catch (java.io.UnsupportedEncodingException ex) {
-            System.err.println("Unsupported encoding set for console: ");
+            System.err.println("Unsupported encoding set for console");
         }
 
 		System.out.println("Привет! Это игра \"Крестики-Нолики\"");
@@ -17,16 +17,18 @@ public class Main {
 		board.showBoard();
 		
 		Game game = new Game();
-		while(true) {
+		for(int i = 1; ; i++) {
 			game.inputCoordinates(gamerX, board);
 			board.showBoard();
-            if(game.validationWinOrDraw(board, gamerX, 'x'))
-                break;
+            if(i >= board.getCellLength())
+                if(game.validationWinOrDraw(board, gamerX, 'x'))
+                    break;
 			
 			game.inputCoordinates(gamerO, board);
 			board.showBoard();
-            if(game.validationWinOrDraw(board, gamerO, 'o'))
-                break;
+            if(i >= board.getCellLength())
+                if(game.validationWinOrDraw(board, gamerO, 'o'))
+                    break;
 	    }
 	}
 }
