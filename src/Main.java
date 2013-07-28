@@ -3,7 +3,7 @@ import java.io.PrintStream;
 public class Main {
   public static void main(String[] args) {
         try {
-            System.setOut(new PrintStream(System.out, true, System.getProperty("file.encoding")));
+            System.setOut(new PrintStream(System.out, true, "UTF-8"));
         } catch (java.io.UnsupportedEncodingException ex) {
             System.err.println("Unsupported encoding set for console: ");
         }
