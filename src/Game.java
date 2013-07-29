@@ -2,6 +2,7 @@
 import java.util.Scanner;
 
 public class Game {
+    private final int MAX_LENGTH_LINE_WIN = 3;
 	private int x;
 	private int y;
     private boolean quit = false;
@@ -45,23 +46,23 @@ public class Game {
 	
 	public boolean validationWinOrDraw(Board b, Gamer g, char orOX) {
         int count2 = 0;
-		for(int i=0; i < b.getCellLength(); i++) {
-			int count=0;
-			for(int j=0; j <b.getCellLength(); j++)
+		for(int i = 0; i < b.getCellLength(); i++) {
+			int count = 0;
+			for(int j = 0; j < b.getCellLength(); j++)
 				if(b.getCell(i, j) == orOX) 
 					count++;
-			if(count == 3) {
+			if(count == MAX_LENGTH_LINE_WIN) {
 				System.out.println("Победил " + g.getNamePlayer() + "!");
 				return true;
 		        }
 		}
 		
-		for(int j=0; j < b.getCellLength(); j++) {
-			int count=0;
-			for(int i=0; i <b.getCellLength(); i++)
+		for(int j = 0; j < b.getCellLength(); j++) {
+			int count = 0;
+			for(int i = 0; i <b.getCellLength(); i++)
 				if(b.getCell(i, j) == orOX) 
 					count++;
-			if(count == 3) {
+			if(count == MAX_LENGTH_LINE_WIN) {
                 System.out.println("Победил " + g.getNamePlayer() + "!");
                 return true;
             }
@@ -70,7 +71,7 @@ public class Game {
 		for(int i=0, count=0; i < b.getCellLength(); i++) {
 			if(b.getCell(i, i) == orOX) 
 				 count++;
-			if(count == 3) {
+			if(count == MAX_LENGTH_LINE_WIN) {
                 System.out.println("Победил " + g.getNamePlayer() + "!");
                 return true;
             }
