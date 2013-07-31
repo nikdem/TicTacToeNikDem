@@ -6,15 +6,12 @@ public class Main {
         Gamer gamerO = new Gamer('O');
 		
 		Board board = new Board();
-		board.showBoard();
-		
-		Game game = new Game();
-		for(int countStep = 1; ; countStep++) {
-            game.stepPlayer(gamerX, board, 'x', countStep);
-        	if(game.getQuit()) break;
+		Game game = new Game(board, gamerO, gamerX);
+        board.showBoard();
 
-        	game.stepPlayer(gamerO, board, 'o', countStep);
-         	if(game.getQuit()) break;
+		for(int countStep = 1; ; countStep++) {
+            game.stepPlayers(countStep);
+        	if(game.getQuit()) break;
 		}
   	}
 }

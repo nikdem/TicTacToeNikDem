@@ -6,6 +6,31 @@ public class Game {
 	private int x;
 	private int y;
     private boolean quit = false;
+    private char orOX;
+    private String gameSelection;
+    private Gamer gamerO;
+    private Gamer gamerX;
+    private Board board;
+    private Gamer gamer;
+
+    public Game(Board board, Gamer gamerO, Gamer gamerX) {
+        this.board = board;
+        this.gamerO = gamerO;
+        this.gamerX = gamerX;
+
+        System.out.println("Выберите один из пунктов:");
+        System.out.print("   1. Игра \"Человек-Человек\".\n" +
+                         "   2. Игра \"Человек-Компьютер\".\n" +
+                         "Пункт: ");
+        Scanner sc = new Scanner(System.in);
+        while(true) {
+            gameSelection = sc.nextLine();
+            if(gameSelection.equals("1") || gameSelection.equals("2") )
+                break;
+            else
+                System.out.print("Вводите только 1 или 2: ");
+        }
+    }
 
     public boolean getQuit() {
         return quit;
@@ -99,11 +124,18 @@ public class Game {
 			return false;
 	}
 
-    public void stepPlayer(Gamer g, Board b, char orOX, int countStep) {
-        inputCoordinates(g, b);
-        b.showBoard();
-        if(countStep >= b.getCellLength())
-            if(validationWinOrDraw(b, g, orOX))
+    public void stepPlayers(int countStep) {
+        if(countStep % 2 == 0) {
+            gamer = gamerO;
+            orOX = 'o';
+        } else {
+            gamer = gamerX;
+            orOX = 'x';
+        }
+        inputCoordinates(gamer, board);
+        board.showBoard();
+        if(countStep >= board.getCellLength())
+            if(validationWinOrDraw(board, gamer, orOX))
                 quit = true;
     }
 }
