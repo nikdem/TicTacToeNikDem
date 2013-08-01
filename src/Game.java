@@ -1,4 +1,4 @@
-//import java.io.IOException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -7,35 +7,37 @@ public class Game {
 	private int y;
     private boolean quit = false;
     private char orOX;
-    private String gameSelection;
     private Gamer gamerO;
     private Gamer gamerX;
     private Board board;
     private Gamer gamer;
 
-    public Game(Board board, Gamer gamerO, Gamer gamerX) {
+    public Game(Board board, Gamer gamerX, Gamer gamerO) {
         this.board = board;
         this.gamerO = gamerO;
         this.gamerX = gamerX;
-
-        System.out.println("Выберите один из пунктов:");
-        System.out.print("   1. Игра \"Человек-Человек\".\n" +
-                         "   2. Игра \"Человек-Компьютер\".\n" +
-                         "Пункт: ");
-        Scanner sc = new Scanner(System.in);
-        while(true) {
-            gameSelection = sc.nextLine();
-            if(gameSelection.equals("1") || gameSelection.equals("2") )
-                break;
-            else
-                System.out.print("Вводите только 1 или 2: ");
-        }
     }
 
     public boolean getQuit() {
         return quit;
     }
-	
+
+    public void inputCoordinates(Board b) {
+        System.out.println("Comp, ввел координаты клетки:");
+        while(true) {
+            x = (new Random()).nextInt(MAX_LENGTH_LINE_WIN);
+            y = (new Random()).nextInt(MAX_LENGTH_LINE_WIN);
+
+            if (validationCell(x, y, b)) {
+                b.setCell(x, y, 'o');
+                break;
+            }
+        }
+
+        System.out.println("  Строка(1-" + b.getCellLength() + "): " + (x+1));
+        System.out.println("  Столбец(1-" + b.getCellLength() + "): " + (y+1));
+    }
+
 	public void inputCoordinates(Gamer g, Board b) {
 		System.out.println(g.getNamePlayer() + ", введите координаты клетки:");
 		Scanner sc = new Scanner(System.in);
@@ -132,7 +134,12 @@ public class Game {
             gamer = gamerX;
             orOX = 'x';
         }
-        inputCoordinates(gamer, board);
+
+        if(gamer.getNamePlayer().equals("Comp"))
+            inputCoordinates(board);
+        else
+            inputCoordinates(gamer, board);
+
         board.showBoard();
         if(countStep >= board.getCellLength())
             if(validationWinOrDraw(board, gamer, orOX))

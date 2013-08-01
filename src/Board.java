@@ -1,10 +1,11 @@
-import java.util.Scanner;
-
 public class Board {
-    private int sizeBoard = 3;
+    private int sizeBoard;
     private char[][] cell;
+    private int maxLengthLineWin;  //на будущее
 
-    Board() {
+
+    Board(Menu menu) {
+        sizeBoard = menu.getDimensionBoard();
         cell = new char[sizeBoard][sizeBoard];
         for(int i = 0; i < cell.length; i++)
             for(int j = 0; j < cell.length; j++)

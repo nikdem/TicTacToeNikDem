@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class Gamer {
-    private String namePlayer;
-    private char orOX;
+    protected String namePlayer;
+    protected char orOX;
 
 	public String getNamePlayer(){
 		return namePlayer;
@@ -21,4 +21,6 @@ public class Gamer {
             System.out.println(namePlayer);
         }
     }
+
+    Gamer() {}
 }
