@@ -24,13 +24,12 @@ public class Menu {
             try {
                 selectionHumansOrComp = sc.nextInt();
             } catch(Exception e) {
-                System.out.print("Введите только 1 или 2: ");
                 sc.skip(".*");
             }
-            if(selectionHumansOrComp == 1 || selectionHumansOrComp == 2)
-                break;
-            else
+            if(selectionHumansOrComp != 1 && selectionHumansOrComp != 2)
                 System.out.print("Введите только 1 или 2: ");
+            else
+                break;
         }
 
         System.out.print("Выберите размерность поля:\n" +
@@ -43,10 +42,9 @@ public class Menu {
             try {
                 selectDimension = sc.nextInt();
             } catch(Exception e) {
-                System.out.print("Введите только от 1 до 4: ");
                 sc.skip(".*");
             }
-            if(selectDimension >=1 && selectDimension <= 4)
+            if(selectDimension >= 1 && selectDimension <= 4)
                 break;
             else
                 System.out.print("Введите только от 1 до 4: ");
@@ -66,7 +64,6 @@ public class Menu {
                     try {
                         selectDimension = sc.nextInt();
                     } catch(Exception e) {
-                        System.out.print("Введите только число(1-20): ");
                         sc.skip(".*");
                     }
                     if(selectDimension >=1 && selectDimension <= 20)
