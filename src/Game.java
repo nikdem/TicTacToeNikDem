@@ -86,7 +86,6 @@ public class Game {
 
         for(int i = 0; i < b.getCellLength() - MAX_LENGTH_LINE_WIN || i == 0; i++)
             for(int j = 0; j < b.getCellLength() - MAX_LENGTH_LINE_WIN || j == 0; j++) {
-                if(b.getCell(i, j) == orOX) {
                     char[][] cell2 = new char[MAX_LENGTH_LINE_WIN][MAX_LENGTH_LINE_WIN];
                     for(int x = 0; x < cell2.length; x++)
                         for(int y = 0; y < cell2.length; y++)
@@ -132,6 +131,7 @@ public class Game {
 
 //                  //проверка на диагональ вида "/"
                     for(int x = 0, count = 0; x < cell2.length; x++) {
+                        System.out.println("!");
                             if(cell2[x][cell2.length - 1 - x] == orOX)
                                 count++;
                             else
@@ -142,7 +142,7 @@ public class Game {
                         }
                     }
 
-                }
+
             }
 
         //проверка на ничью
