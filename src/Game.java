@@ -131,7 +131,6 @@ public class Game {
 
 //                  //проверка на диагональ вида "/"
                     for(int x = 0, count = 0; x < cell2.length; x++) {
-                        System.out.println("!");
                             if(cell2[x][cell2.length - 1 - x] == orOX)
                                 count++;
                             else
