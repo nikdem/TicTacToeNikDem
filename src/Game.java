@@ -25,8 +25,8 @@ public class Game {
     public void inputCoordinates(Board b) {
         System.out.println("Comp, ввел координаты клетки:");
         while(true) {
-            x = (new Random()).nextInt(MAX_LENGTH_LINE_WIN);
-            y = (new Random()).nextInt(MAX_LENGTH_LINE_WIN);
+            x = (new Random()).nextInt(b.getCellLength());
+            y = (new Random()).nextInt(b.getCellLength());
 
             if (validationCell(x, y, b)) {
                 b.setCell(x, y, 'o');
@@ -73,49 +73,91 @@ public class Game {
 	
 	public boolean validationWinOrDraw(Board b, Gamer g, char orOX) {
         int count2 = 0;
-		for(int i = 0; i < b.getCellLength(); i++) {
-			int count = 0;
+
+        //проверка на ничью
+		for(int i = 0; i < b.getCellLength(); i++)
 			for(int j = 0; j < b.getCellLength(); j++)
-				if(b.getCell(i, j) == orOX) 
-					count++;
-			if(count == MAX_LENGTH_LINE_WIN) {
-				System.out.println("Победил " + g.getNamePlayer() + "!");
-				return true;
-		        }
-		}
-		
-		for(int j = 0; j < b.getCellLength(); j++) {
-			int count = 0;
-			for(int i = 0; i <b.getCellLength(); i++)
-				if(b.getCell(i, j) == orOX) 
-					count++;
-			if(count == MAX_LENGTH_LINE_WIN) {
-                System.out.println("Победил " + g.getNamePlayer() + "!");
-                return true;
-            }
-		}
-		
-		for(int i=0, count=0; i < b.getCellLength(); i++) {
-			if(b.getCell(i, i) == orOX) 
-				 count++;
-			if(count == MAX_LENGTH_LINE_WIN) {
-                System.out.println("Победил " + g.getNamePlayer() + "!");
-                return true;
-            }
-		}
-		
-		for(int i=0; i < b.getCellLength(); i++)
-			for(int j=0; j < b.getCellLength(); j++)
-			if(b.getCell(i, j) == '#') 
-				 count2++;
-		    if(count2 == 0) {
+			    if(b.getCell(i, j) == '#')
+				    count2++;
+		if(count2 == 0) {
 				System.out.println("Ничья!");
                 return true;
 		}
 
+        for(int i = 0; i < b.getCellLength() - MAX_LENGTH_LINE_WIN || i == 0; i++)
+            for(int j = 0; j < b.getCellLength() - MAX_LENGTH_LINE_WIN || j == 0; j++) {
+                if(b.getCell(i, j) == orOX) {
+                    char[][] cell2 = new char[MAX_LENGTH_LINE_WIN][MAX_LENGTH_LINE_WIN];
+                    for(int x = 0; x < cell2.length; x++)
+                        for(int y = 0; y < cell2.length; y++)
+                            cell2[x][y] = b.getCell(i + x, j + y);
+
+                    //проверка на горизонталь
+                    for(int x = 0, count = 0; x < cell2.length; x++) {
+                        for(int y = 0; y < cell2.length; y++)
+                            if(cell2[x][y] == orOX)
+                                count++;
+                            else
+                                count = 0;
+                        if(count == MAX_LENGTH_LINE_WIN) {
+                            System.out.println("Победил " + g.getNamePlayer() + "!");
+                            return true;
+                        }
+                    }
+
+                    //проверка на вертикаль
+                    for(int y = 0, count = 0; y < cell2.length; y++) {
+                        for(int x = 0; x < cell2.length; x++)
+                            if(cell2[x][y] == orOX)
+                                count++;
+                            else
+                                count = 0;
+                        if(count == MAX_LENGTH_LINE_WIN) {
+                            System.out.println("Победил " + g.getNamePlayer() + "!");
+                            return true;
+                        }
+                    }
+
+                    //проверка на диагональ вида "\"
+                    for(int x = 0, count = 0; x < cell2.length; x++) {
+                        if(cell2[x][x] == orOX)
+                            count++;
+                        else
+                            count = 0;
+                        if(count == MAX_LENGTH_LINE_WIN) {
+                            System.out.println("Победил " + g.getNamePlayer() + "!");
+                            return true;
+                        }
+                    }
+
+//                  //проверка на диагональ вида "/"
+                    for(int x = 0, count = 0; x < cell2.length; x++) {
+                            if(cell2[x][cell2.length - 1 - x] == orOX)
+                                count++;
+                            else
+                                count = 0;
+                            if(count == MAX_LENGTH_LINE_WIN) {
+                                System.out.println("Победил " + g.getNamePlayer() + "!");
+                                return true;
+                        }
+                    }
+
+                }
+            }
+
+        //проверка на ничью
+        for(int i = 0; i < b.getCellLength(); i++)
+            for(int j = 0; j < b.getCellLength(); j++)
+                if(b.getCell(i, j) == '#')
+                    count2++;
+        if(count2 == 0) {
+            System.out.println("Ничья!");
+            return true;
+        }
+
         return false;
 	}
-		
+
 	private boolean validationCell(int x, int y, Board b) {
 		if(x < b.getCellLength() && x >= 0 && y < b.getCellLength() && y >= 0) {
 			if (b.getCell(x, y) == 'o' || b.getCell(x, y) == 'x')
@@ -141,7 +183,7 @@ public class Game {
             inputCoordinates(gamer, board);
 
         board.showBoard();
-        if(countStep >= board.getCellLength())
+        if(countStep >= MAX_LENGTH_LINE_WIN)
             if(validationWinOrDraw(board, gamer, orOX))
                 quit = true;
     }
