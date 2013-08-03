@@ -59,17 +59,18 @@ public class Menu {
             case 3:
                 dimensionBoard = 5; break;
             case 4: {
-                System.out.print("Введите размерность поля(1-20): ");
+                selectDimension = 0;
+                System.out.print("Введите размерность поля(3-20): ");
                 while(true) {
                     try {
                         selectDimension = sc.nextInt();
                     } catch(Exception e) {
                         sc.skip(".*");
                     }
-                    if(selectDimension >=1 && selectDimension <= 20)
+                    if(selectDimension >= 3 && selectDimension <= 20)
                         break;
                     else
-                        System.out.print("Введите только число(1-20): ");
+                        System.out.print("Введите только число(3-20): ");
                 }
                 dimensionBoard = selectDimension; break;
             }
