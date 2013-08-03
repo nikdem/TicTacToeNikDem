@@ -129,7 +129,7 @@ public class Game {
                         }
                     }
 
-//                  //проверка на диагональ вида "/"
+                    //проверка на диагональ вида "/"
                     for(int x = 0, count = 0; x < cell2.length; x++) {
                             if(cell2[x][cell2.length - 1 - x] == orOX)
                                 count++;
@@ -140,8 +140,6 @@ public class Game {
                                 return true;
                         }
                     }
-
-
             }
 
         //проверка на ничью
