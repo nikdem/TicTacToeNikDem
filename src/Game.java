@@ -2,7 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-    private final int MAX_LENGTH_LINE_WIN = 3;
+    private final static int MAX_LENGTH_LINE_WIN = 3;
 	private int x;
 	private int y;
     private boolean quit = false;
@@ -141,16 +141,6 @@ public class Game {
                         }
                     }
             }
-
-        //проверка на ничью
-        for(int i = 0; i < b.getCellLength(); i++)
-            for(int j = 0; j < b.getCellLength(); j++)
-                if(b.getCell(i, j) == '#')
-                    count2++;
-        if(count2 == 0) {
-            System.out.println("Ничья!");
-            return true;
-        }
 
         return false;
 	}
